@@ -36,7 +36,7 @@ var HTMLHelper = (function(document, window) {
 
   /** trigger input change
   *		@function fireChangeEventManually
-  *		@param {Object} elem HTML Element
+  *		@param {HTMLElement} elem HTML Element
   **/
   var fireChangeEventManually = function(elem) {
     //console.log("Trigged fireChangeEventManually");
@@ -54,7 +54,7 @@ var HTMLHelper = (function(document, window) {
 
   /** get id of the parent node
   *		@function getParentId
-  *		@param {Object} elem HTML Element
+  *		@param {HTMLElement} elem HTML Element
   *
   *   @return {string} element parent id
   **/
@@ -71,7 +71,7 @@ var HTMLHelper = (function(document, window) {
           }
         }
       } else {
-        back =elemel.id;
+        back =elem.id;
       }
     }
 
@@ -81,7 +81,7 @@ var HTMLHelper = (function(document, window) {
 
   /** get id of the next parent node
   *		@function getParentsNextId
-  *		@param {Object} elem HTML Element
+  *		@param {HTMLElement} elem HTML Element
   *
   *   @return {string} element parent id
   **/
@@ -103,14 +103,14 @@ var HTMLHelper = (function(document, window) {
 
   /** get id of the wrapper node
   *		@function getWrapperId
-  *		@param {Object} elem HTML Element
+  *		@param {HTMLElement} elem HTML Element
   *
   *   @return {string} element wrapper id
   **/
   var getWrapperId = function(elem) {
     var wrapperID = '';
     if (elem) {
-      parent = elem.parentNode;
+      var parent = elem.parentNode;
       if (parent && parent.id) {
         var wrapper = parent.id.toLowerCase();
         if (wrapper && wrapper.indexOf('wrapper') >= 0) {
@@ -124,9 +124,9 @@ var HTMLHelper = (function(document, window) {
 
   /** check if element is active document element
   *		@function isActiveFieldSet
-  *		@param {Object} elem HTML Element
+  *		@param {HTMLElement} elem HTML Element
   *
-  *   @return {boolean} element is active document element
+  *   @return {boolean} element is the given element the active document element
   **/
   var isActiveFieldSet = function(elem) {
     var found = true;
@@ -140,7 +140,7 @@ var HTMLHelper = (function(document, window) {
 
   /** check if attribute of element is set
   *		@function isAttrSet
-  *		@param {Object} elem HTML Element
+  *		@param {HTMLElement} elem HTML Element
   *   @param {string} attr Attribute name
   *
   *   @return {boolean} found attribute in element
@@ -158,7 +158,7 @@ var HTMLHelper = (function(document, window) {
 
   /** check if given element is disabled (disable, hidden or not visible)
   *		@function isDisabled
-  *		@param {Object} elem HTML Element
+  *		@param {HTMLElement} elem HTML Element
   *
   *   @return {boolean} is disabled
   **/
@@ -182,7 +182,7 @@ var HTMLHelper = (function(document, window) {
 
   /** check if given element is hidden (or not visible)
   *		@function isHidden
-  *		@param {Object} elem HTML Element
+  *		@param {HTMLElement} elem HTML Element
   *
   *   @return {boolean} is hidden
   **/
@@ -328,7 +328,7 @@ var HTMLHelper = (function(document, window) {
 
   /** set scrollbar top to given position
   *		@function setScrollTop
-  *		@param {Object} elem HTML Element
+  *		@param {HTMLElement} elem HTML Element
   *   @param {number} position position
   **/
   var setScrollTop = function(elem, position) {
@@ -342,7 +342,7 @@ var HTMLHelper = (function(document, window) {
 
   /** set focus on given element
   *		@function setFocus
-  *		@param {Object} elem HTML Element
+  *		@param {HTMLElement} elem HTML Element
   **/
   var setFocus = function(elem) {
     if (elem && !isDisabled(elem)) {
@@ -350,7 +350,7 @@ var HTMLHelper = (function(document, window) {
         elem.focus();
 
         if (!isActiveFieldSet(elem)) {
-          setTimeout(function () {
+          window.setTimeout(function () {
             window.requestAnimationFrame(function() {
               elem.focus();
             });
@@ -364,7 +364,7 @@ var HTMLHelper = (function(document, window) {
 
   /** leave given element via blur
   *		@function setBlur
-  *		@param {Object} elem HTML Element
+  *		@param {HTMLElement} elem HTML Element
   **/
   var setBlur = function(elem) {
     if (elem) {
@@ -377,7 +377,7 @@ var HTMLHelper = (function(document, window) {
 
   /** set inner HTML of given element
   *		@function setHTML
-  *		@param {Object} elem HTML Element
+  *		@param {HTMLElement} elem HTML Element
   *   @param {string} html html sourcecode in string format
   **/
   var setHTML = function(elem, html) {
@@ -391,8 +391,8 @@ var HTMLHelper = (function(document, window) {
 
   /** set inner HTML of given element
   *		@function setImage
-  *		@param {Object} elem HTML Element
-  *   @param {string} html html sourcecode in string format
+  *		@param {HTMLElement} elem HTML Element
+  *   @param {string} imgSrc image source
   **/
   var setImage = function(elem, imgSrc) {
     if (elem && imgSrc) {
@@ -403,15 +403,12 @@ var HTMLHelper = (function(document, window) {
   };
 
 
-  var getValueOfStyle = function(value) {
-    var temp = 0;
-    if (value && (value.length >= 3)) {
-      temp = parseInt(value.substr(0,value.length));
-    }
-    return temp;
-  };
-
-
+  /** check if given element is of type text
+  *		@function isTextField
+  *		@param {HTMLElement} elem HTML Element
+  *
+  *   @return {boolean} is textfield
+  **/
   var isTextField = function(elem) {
     var found = false;
     if (elem && elem.type) {
@@ -422,11 +419,12 @@ var HTMLHelper = (function(document, window) {
   };
 
 
-  var isTextSelect = function(elem) {
-    return (isAttrSet(elem, 'textselect'));
-  };
-
-
+  /** check if given element is contenteditable
+  *		@function isDIVEditField
+  *		@param {HTMLElement} elem HTML Element
+  *
+  *   @return {boolean} is contenteditable div element
+  **/
   var isDIVEditField = function(elem) {
     var found = false;
     if (elem && elem.tagName) {
@@ -442,11 +440,23 @@ var HTMLHelper = (function(document, window) {
   };
 
 
+  /** check if given element is contenteditable
+  *		@function isDIVEditField
+  *		@param {HTMLElement} elem HTML Element
+  *
+  *   @return {boolean} is contenteditable div element
+  **/
   var isTextAreaField = function(elem) {
     return (elem && elem.tagName && elem.tagName.toLowerCase() === 'textarea');
   };
 
 
+  /** get value of the given element
+  *		@function getValue
+  *		@param {HTMLElement} elem HTML Element
+  *
+  *   @return {string} value of element
+  **/
   var getValue = function(elem) {
     var value = '';
     if (elem) {
@@ -462,6 +472,11 @@ var HTMLHelper = (function(document, window) {
   };
 
 
+  /** set value of the given element
+  *		@function setValue
+  *		@param {HTMLElement} elem HTML Element
+  *   @param {string} val element value
+  **/
   var setValue = function(elem, val) {
     if (elem && val !== undefined && val !== null) {
       if (isDIVEditField(elem)) {
@@ -474,6 +489,10 @@ var HTMLHelper = (function(document, window) {
   };
 
 
+  /** remove all childs of parent node
+  *		@function removeAllChilds
+  *		@param {HTMLElement} parentNode HTML parent Element
+  **/
   var removeAllChilds = function(parentNode) {
     if (parentNode) {
       while( parentNode.hasChildNodes() ) {
@@ -483,14 +502,24 @@ var HTMLHelper = (function(document, window) {
   };
 
 
+  /** insert value in div element
+  *		@function insertValueInDiv
+  *		@param {HTMLElement} elem HTML Element
+  *   @param {string} value element value
+  **/
   var insertValueInDiv = function(elem, value) {
     value = value.replace(/\s/g, "&nbsp;");
     elem.innerHTML = value;
-
   };
 
 
-  var getCursorPosition = function(elem, isPinyinBlockColor) {
+  /** get cursor position
+  *		@function getCursorPosition
+  *		@param {HTMLElement} elem HTML Element
+  *
+  *   @return {number} cursor position
+  **/
+  var getCursorPosition = function(elem) {
     var pos = 0;
     if (elem && isTextField(elem)) {
         pos = elem.selectionStart;
@@ -500,27 +529,12 @@ var HTMLHelper = (function(document, window) {
   };
 
 
-  var getCaretPos = function(elem) {
-    var cursorposition = getCursorPosition(elem, true);
-    var caretpos = 0;
-  //  var caretpos = cursorposition * 12;
-
-    var ruler = document.getElementById("ruler");
-    if (ruler && elem) {
-      var value = getValue(elem);
-      if (value) {
-        ruler.innerHTML = value.substr(0,cursorposition);
-        caretpos = ruler.offsetWidth;
-
-        //console.log("myCaretPos " + caretpos);
-        if (caretpos > elem.scrollWidth) caretpos = elem.scrollWidth;
-        if (caretpos < 0) caretpos = 0;
-      }
-    }
-    return caretpos;
-  };
-
-
+  /** is cursor position at the end
+  *		@function isCursorAtEnd
+  *		@param {HTMLElement} elem HTML Element
+  *
+  *   @return {boolean} is cursor position at end
+  **/
   var isCursorAtEnd = function(elem) {
     var back = false;
     if (elem) {
@@ -532,15 +546,17 @@ var HTMLHelper = (function(document, window) {
   };
 
 
-  var isFunction = function(callback) {
-    return (typeof callback === 'function');
-  };
-
-
+  /** try to execute any function as callback with delay time
+  *		@function tryAgain
+  *		@param {string} id identifier
+  *   @param {function} callback callback function
+  *   @param {number} delay delay time before executing callback
+  *   @param {number} maxLoop max tries
+  **/
   var tryAgain = function(id, callback, delay, maxLoop) {
     if (id && callback) {
       if (tryAgainCaching[id] === undefined || tryAgainCaching[id] === null) {
-        tryAgainCaching[id] = {callback : callback, count: 1, delay : (parseInt(delay) || 250), maxLoop : (parseInt(maxLoop) || 3)};
+        tryAgainCaching[id] = {callback : callback, count: 1, delay : (parseInt(delay) >= 0 || 250), maxLoop : (parseInt(maxLoop) || 3)};
       }
 
       if (tryAgainCaching[id] !== undefined && tryAgainCaching[id] !== null) {
@@ -549,7 +565,7 @@ var HTMLHelper = (function(document, window) {
           console.warn('cannot execute callback id: ' + id);
         } else {
           var callbackTemp = tryAgainCaching[id].callback;
-          setTimeout(function() {
+          window.setTimeout(function() {
             if (callbackTemp !== undefined && callbackTemp !== null) {
               if (isFunction(callbackTemp)) {
                 callbackTemp.call();
@@ -575,7 +591,6 @@ var HTMLHelper = (function(document, window) {
     isAttrSet : isAttrSet,
     isDisabled : isDisabled,
     isHidden : isHidden,
-    isPlaceholderSet : isPlaceholderSet,
     setStyle : setStyle,
     style : style,
     attribute : attribute,
@@ -586,12 +601,7 @@ var HTMLHelper = (function(document, window) {
     setScrollTop : setScrollTop,
     setFocus : setFocus,
     setBlur : setBlur,
-    setClass : setClass,
-    removeClass : removeClass,
-    addClass : addClass,
-    getValueOfStyle : getValueOfStyle,
     isTextField : isTextField,
-    isTextSelect : isTextSelect,
     isDIVEditField : isDIVEditField,
     isTextAreaField : isTextAreaField,
     setHTML : setHTML,
@@ -602,7 +612,6 @@ var HTMLHelper = (function(document, window) {
     getCursorPosition : getCursorPosition,
     isCursorAtEnd : isCursorAtEnd,
     removeAllChilds : removeAllChilds,
-    getCaretPos : getCaretPos,
     tryAgain : tryAgain,
   };
 
