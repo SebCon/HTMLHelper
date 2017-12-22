@@ -28,6 +28,7 @@ If you want to change styles of an element, you can do this via JS. But for bett
 
 ```javascript
 var elem = document.getElementById('testme');
+
 HTMLHelper.setStyle(elem.id, elem, new HTMLHelper.style('display', 'block'));
 HTMLHelper.setStyle(elem.id, elem, new HTMLHelper.style('width', '200px'));
 HTMLHelper.setStyle(elem.id, elem, new HTMLHelper.style('backgroundColor', 'red'));
@@ -39,6 +40,7 @@ And here are some examples with other functions:
 ### setFocus / isDisabled / isHidden
 ```javascript
 var elem = document.getElementById('testme');
+
 if (!HTMLHelper.isDisabled(elem) && !HTMLHelper.isHidden(elem)) {
   HTMLHelper.setFocus(elem);
 }
