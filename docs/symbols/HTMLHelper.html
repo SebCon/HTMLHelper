@@ -434,9 +434,36 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&lt;inner&gt; &nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/HTMLHelper.html#-refreshAll">refreshAll</a></b>()
+								</div>
+								<div class="description">refresh all latest styles</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/HTMLHelper.html#-refreshStyle">refreshStyle</a></b>(id)
+								</div>
+								<div class="description">refresh style of id</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/HTMLHelper.html#-removeAllChilds">removeAllChilds</a></b>(parentNode)
 								</div>
 								<div class="description">remove all childs of parent node</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/HTMLHelper.html#-setAttribute">setAttribute</a></b>(id, element, attribute, refresh)
+								</div>
+								<div class="description">set attribute of an element</div>
 							</td>
 						</tr>
 					
@@ -482,6 +509,15 @@ ul.inheritsList
 								<div class="fixedFont"><b><a href="../symbols/HTMLHelper.html#-setScrollTop">setScrollTop</a></b>(elem, position)
 								</div>
 								<div class="description">set scrollbar top to given position</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/HTMLHelper.html#-setStyle">setStyle</a></b>(id, element, style, refresh)
+								</div>
+								<div class="description">set style of an element</div>
 							</td>
 						</tr>
 					
@@ -1260,6 +1296,67 @@ ul.inheritsList
 
 					<hr />
 				
+					<a name="-refreshAll"> </a>
+					<div class="fixedFont">&lt;inner&gt; 
+					
+					
+					<b>refreshAll</b>()
+					
+					</div>
+					<div class="description">
+						refresh all latest styles
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="-refreshStyle"> </a>
+					<div class="fixedFont">&lt;inner&gt; 
+					
+					
+					<b>refreshStyle</b>(id)
+					
+					</div>
+					<div class="description">
+						refresh style of id
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>id</b>
+									
+								</dt>
+								<dd>identifier</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
 					<a name="-removeAllChilds"> </a>
 					<div class="fixedFont">&lt;inner&gt; 
 					
@@ -1284,6 +1381,60 @@ ul.inheritsList
 									
 								</dt>
 								<dd>HTML parent Element</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="-setAttribute"> </a>
+					<div class="fixedFont">&lt;inner&gt; 
+					
+					
+					<b>setAttribute</b>(id, element, attribute, refresh)
+					
+					</div>
+					<div class="description">
+						set attribute of an element
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>id</b>
+									
+								</dt>
+								<dd>identifier</dd>
+							
+								<dt>
+									<span class="light fixedFont">{HTMLElement}</span> <b>element</b>
+									
+								</dt>
+								<dd>HTML element</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>attribute</b>
+									
+								</dt>
+								<dd>attribute name and attribute value</dd>
+							
+								<dt>
+									<span class="light fixedFont">{boolean}</span> <b>refresh</b>
+									<i>Optional</i>
+								</dt>
+								<dd>refresh style</dd>
 							
 							</dl>
 						
@@ -1494,6 +1645,60 @@ ul.inheritsList
 
 					<hr />
 				
+					<a name="-setStyle"> </a>
+					<div class="fixedFont">&lt;inner&gt; 
+					
+					
+					<b>setStyle</b>(id, element, style, refresh)
+					
+					</div>
+					<div class="description">
+						set style of an element
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>id</b>
+									
+								</dt>
+								<dd>identifier</dd>
+							
+								<dt>
+									<span class="light fixedFont">{HTMLElement}</span> <b>element</b>
+									
+								</dt>
+								<dd>HTML element</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>style</b>
+									
+								</dt>
+								<dd>style name and style value</dd>
+							
+								<dt>
+									<span class="light fixedFont">{boolean}</span> <b>refresh</b>
+									<i>Optional</i>
+								</dt>
+								<dd>refresh style</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
 					<a name="-setValue"> </a>
 					<div class="fixedFont">&lt;inner&gt; 
 					
@@ -1602,7 +1807,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Dec 22 2017 14:36:13 GMT+0100 (CET)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Dec 29 2017 15:14:14 GMT+0100 (CET)
 		</div>
 	</body>
 </html>
