@@ -24,6 +24,7 @@ If you want to change styles of an element, you can do this via JS. But for bett
 
 ```html
 <div id="testme" style="display: none"></div>
+<input id="inputTest" style="display: none">
 ```
 
 ```javascript
@@ -39,13 +40,27 @@ And here are some examples with other functions:
 
 ### setFocus / isDisabled / isHidden
 ```javascript
-var elem = document.getElementById('testme');
+var input = document.getElementById('inputTest');
 
-if (!HTMLHelper.isDisabled(elem) && !HTMLHelper.isHidden(elem)) {
-  HTMLHelper.setFocus(elem);
-}
+  if (!HTMLHelper.isDisabled(input) && !HTMLHelper.isHidden(input)) {
+    HTMLHelper.setFocus(input);
+  } else {
+    console.warn('first try to set focus');
+  }
+
+  HTMLHelper.setStyle(input.id, input, new HTMLHelper.style('display', 'block'), true);
+
+  // need timeout because of animation frame
+  setTimeout(function() {
+    if (!HTMLHelper.isDisabled(input) && !HTMLHelper.isHidden(input)) {
+      console.log('set focus!');
+      HTMLHelper.setFocus(input);
+    }
+  }, 100);
 ```
       
+## Examples
+These examples you can find in *examples.html*
 
 ## Authors
 
