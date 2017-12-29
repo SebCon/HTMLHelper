@@ -1,0 +1,39 @@
+
+<html>
+<body>
+
+<div id="testme" style="display: none"></div>
+<input id="inputTest" style="display: none">
+
+</body>
+
+<script src="HTMLHelper.js"></script>
+
+<script>
+  var elem = document.getElementById('testme');
+  var input = document.getElementById('inputTest');
+
+  HTMLHelper.setStyle(elem.id, elem, new HTMLHelper.style('display', 'block'));
+  HTMLHelper.setStyle(elem.id, elem, new HTMLHelper.style('width', '200px'));
+  HTMLHelper.setStyle(elem.id, elem, new HTMLHelper.style('backgroundColor', 'red'));
+  HTMLHelper.refreshAll();
+
+  if (!HTMLHelper.isDisabled(input) && !HTMLHelper.isHidden(input)) {
+    HTMLHelper.setFocus(input);
+  } else {
+    console.warn('first try to set focus');
+  }
+
+  HTMLHelper.setStyle(input.id, input, new HTMLHelper.style('display', 'block'), true);
+
+  setTimeout(function() {
+    if (!HTMLHelper.isDisabled(input) && !HTMLHelper.isHidden(input)) {
+      console.log('set focus!');
+      HTMLHelper.setFocus(input);
+    }
+  }, 100);
+
+</script>
+
+
+</html>

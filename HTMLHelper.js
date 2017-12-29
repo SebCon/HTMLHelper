@@ -165,15 +165,9 @@ var HTMLHelper = (function(document, window) {
   var isDisabled = function(elem) {
     var found = false;
     if (elem) {
-      found = (elem.style && elem.style.visibility && elem.style.visibility.toLowerCase() === 'hidden');
-      if (!found) {
-        found = (elem.style && elem.style.display && elem.style.display.toLowerCase() === 'none');
-      }
-      if (!found) {
-        if (elem.getAttribute) {
-          var temp = elem.getAttribute('disabled');
-          found = (temp !== undefined && temp !== null);
-        }
+      if (elem.getAttribute) {
+        var temp = elem.getAttribute('disabled');
+        found = (temp !== undefined && temp !== null);
       }
     }
     return found;
@@ -191,7 +185,10 @@ var HTMLHelper = (function(document, window) {
     if (elem) {
       found = (elem.style && elem.style.visibility && elem.style.visibility.toLowerCase() === 'hidden');
       if (!found) {
-        found = (elem.style && elem.style.opacity && elem.style.opacity.toLowerCase() === '0');
+        found = (elem.style && elem.style.display && elem.style.display.toLowerCase() === 'none');
+      }
+      if (!found) {
+        found = (elem.style && elem.style.opacity && elem.style.opacity === '0');
       }
     }
 
@@ -229,6 +226,13 @@ var HTMLHelper = (function(document, window) {
   };
 
 
+  /** set style of an element
+  *		@function setStyle
+  *   @param {string} id identifier
+  *   @param {HTMLElement} element HTML element
+  *   @param {Object} style style name and style value
+  *   @param {boolean} [refresh] refresh style
+  **/
   var setStyle = function(id, element, style, refresh) {
     if (styles && element && id) {
       if (!styles[id]) {
@@ -242,6 +246,13 @@ var HTMLHelper = (function(document, window) {
   };
 
 
+  /** set attribute of an element
+  *		@function setAttribute
+  *   @param {string} id identifier
+  *   @param {HTMLElement} element HTML element
+  *   @param {Object} attribute attribute name and attribute value
+  *   @param {boolean} [refresh] refresh style
+  **/
   var setAttribute = function(id, element, attribute, refresh) {
     if (attribute && element && id) {
       if (!attributes[id]) {
@@ -280,6 +291,10 @@ var HTMLHelper = (function(document, window) {
   };
 
 
+  /** refresh style of id
+  *		@function refreshStyle
+  *		@param {string} id identifier
+  **/
   var refreshStyle = function(id) {
     window.requestAnimationFrame(function() {
       refreshStyleContent(id);
@@ -287,6 +302,9 @@ var HTMLHelper = (function(document, window) {
   };
 
 
+  /** refresh all latest styles
+  *		@function refreshAll
+  **/
   var refreshAll = function() {
     for (var key in styles) {
       if (styles[key] && styles[key].length > 0) {
